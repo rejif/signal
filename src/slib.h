@@ -90,21 +90,6 @@ public:
         widget->show();
     }
     //Factory
-    static QAction* createSlotAction(const QString actText,const QObject *receiver, const char *member, Qt::ConnectionType = Qt::AutoConnection){
-        //createSlotAction(tr("SlotAction"),qApp, SLOT(quit()));
-        QAction* act = new QAction(actText);
-        connect(act, SIGNAL(triggered()),receiver,member);
-        return act;
-    }
-    static QPushButton* createSlotActionButton(const QString btnText,const QObject *receiver, const char *member){
-        QPushButton *slotBtn = new QPushButton(btnText);
-        QAction* slotAct = createSlotAction(btnText+"Action",receiver,member);
-        QObject::connect(
-            slotBtn,SIGNAL(clicked(bool)),
-            slotAct,SLOT(trigger())
-        );
-        return slotBtn;
-    }
     template<typename Functor>
     static QAction* createLambdaAction(const QString actText,Functor f){
         QAction* act = new QAction(actText);
@@ -128,6 +113,21 @@ public:
             QApplication::quit();
         });
         return qQuitBtn;
+    }
+    static QAction* createSlotAction(const QString actText,const QObject *receiver, const char *member, Qt::ConnectionType = Qt::AutoConnection){
+        //createSlotAction(tr("SlotAction"),qApp, SLOT(quit()));
+        QAction* act = new QAction(actText);
+        connect(act, SIGNAL(triggered()),receiver,member);
+        return act;
+    }
+    static QPushButton* createSlotActionButton(const QString btnText,const QObject *receiver, const char *member){
+        QPushButton *slotBtn = new QPushButton(btnText);
+        QAction* slotAct = createSlotAction(btnText+"Action",receiver,member);
+        QObject::connect(
+            slotBtn,SIGNAL(clicked(bool)),
+            slotAct,SLOT(trigger())
+        );
+        return slotBtn;
     }
     static QScrollArea* createScrollArea(QVBoxLayout *layout,bool aligncenter){
         QScrollArea* scrollarea = new QScrollArea();
@@ -165,6 +165,11 @@ public:
         hl->setSpacing(0);
         hl->setMargin(0);
         return hl;
+    }
+    static QLabel* createLabel(const QString &text,const QString& styleSheet, QWidget *parent=Q_NULLPTR){
+        QLabel *label = new QLabel(text,parent);
+        label->setStyleSheet(styleSheet);
+        return label;
     }
 };
 

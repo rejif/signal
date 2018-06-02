@@ -37,8 +37,7 @@ int main(int argc, char *argv[]){
     QSystemTrayIcon *trayIcon = new QSystemTrayIcon();
     trayIcon->setIcon(QIcon(":/signal.png"));
     QObject::connect(trayIcon, &QSystemTrayIcon::activated, [=](QSystemTrayIcon::ActivationReason reason) {
-        if (reason == QSystemTrayIcon::DoubleClick){
-            //qDebug()<<"SystemTrayDoubleClickTrigger";
+        if (reason == QSystemTrayIcon::Trigger){
             mw->mwShowHide();
         }
     });

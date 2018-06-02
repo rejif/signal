@@ -21,28 +21,39 @@ MWindow::MWindow(QWidget *parent):QMainWindow(parent){
     QVBoxLayout *vl = Slib::createVBoxLayout();
     cw->setLayout(vl);
 
-    QHBoxLayout *hl = Slib::createHBoxLayout();
-    QLabel *title = new QLabel(getUsername()+"@Signal");
-    title->setStyleSheet(
-                "QLabel{"
-                    "padding:1px 5px;"
-                    "color:white;"
-                    "background-color:rgba(34,34,34,0.8);"
-                "}"
-                "QLabel:hover:!pressed{"
-                    "background-color:#5fe35f;"
-                "}"
-            );
-    hl->addWidget(title);
-    hl->addWidget(Slib::createSlotActionButton("ShowHide",this,SLOT(mwShowHide())));
-    hl->addWidget(Slib::createQAppQuitBtn());
-    vl->addLayout(hl);
-    vl->addWidget(Slib::createLambdaActionButton("ConfigReLoad",[=](){
+    QHBoxLayout *hlheader = Slib::createHBoxLayout();
+    hlheader->addWidget(Slib::createLabel(getUsername()+"@Signal",
+      "QLabel{"
+          "padding:1px 5px;"
+          "color:white;"
+          "background-color:rgba(34,34,34,0.8);"
+      "}"
+      "QLabel:hover:!pressed{"
+          "background-color:#5fe35f;"
+      "}"
+    ));
+    hlheader->addWidget(Slib::createSlotActionButton("ShowHide",this,SLOT(mwShowHide())));
+    hlheader->addWidget(Slib::createQAppQuitBtn());
+    vl->addLayout(hlheader);
+
+    vl->addSpacing(23);
+
+    vl->addWidget(
+        Slib::createLambdaActionButton("ApplicationUpdate",[=](){
+            QProcess::execute("C:/Windows/System32/cmd.exe /C start https://ci.appveyor.com/project/onoie/signal/build/artifacts/");
+        })
+    );
+
+    QHBoxLayout *hlconfig = Slib::createHBoxLayout();
+    hlconfig->addWidget(Slib::createLabel("Config","QLabel{padding:1px 5px;color:white;background-color:rgba(34,34,34,0.8);}"));
+    hlconfig->addWidget(Slib::createLambdaActionButton("ReLoad",[=](){
         config->load();
         QMessageBox::information(this,"Information","token:"+config->token);
     }));
-    vl->addWidget(Slib::createLambdaActionButton("ConfigEdit",[=](){if(config->check()){QProcess::execute("C:/Windows/System32/cmd.exe /C start "+config->path);}}));
-    vl->addWidget(Slib::createLambdaActionButton("ConfigSave",[=](){config->save();}));
+    hlconfig->addWidget(Slib::createLambdaActionButton("ConfigEdit",[=](){if(config->check()){QProcess::execute("C:/Windows/System32/cmd.exe /C start "+config->path);}}));
+    hlconfig->addWidget(Slib::createLambdaActionButton("ConfigSave",[=](){config->save();}));
+    vl->addLayout(hlconfig);
+
     vl->addWidget(
         Slib::createLambdaActionButton("EPOCID",[=](){
             QApplication::clipboard()->setText(QString::number(getEpoc()));
