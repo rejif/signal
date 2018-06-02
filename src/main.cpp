@@ -1,10 +1,26 @@
 #include "mwindow.h"
+
 #include <QDebug>
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QRect>
 #include <QSystemTrayIcon>
+
 #include <iostream>
+
+#include "ui_twitterdialog.h"
+#include "twittertimelinemodel.h"
+
+#include <functional>
+
+#include <QUrl>
+#include <QApplication>
+#include <QNetworkReply>
+#include <QNetworkRequest>
+#include <QCommandLineParser>
+#include <QCommandLineOption>
+
+
 using namespace std;
 int main(int argc, char *argv[]){
     QApplication a(argc, argv);
