@@ -6,14 +6,16 @@ CONFIG -= app_bundle
 
 HEADERS += \
     twitter.h \
+    ui_twitterdialog.h \
     twittertimelinemodel.h
 
 SOURCES += \
     main.cpp \
     twitter.cpp \
     twittertimelinemodel.cpp
-FORMS += \
-    twitterdialog.ui
+
+#FORMS += \
+#    twitterdialog.ui
 
 #Ref2
 #HEADERS += src/Twitter.h
@@ -22,7 +24,7 @@ FORMS += \
 
 #QT       += core widgets network networkauth
 
-#win32:QT += winextras
+win32:QT += winextras
 
 #TARGET = signal
 #TEMPLATE = app
@@ -31,18 +33,18 @@ FORMS += \
 
 #//include(src/src.pri)
 
-#RESOURCES += \
-#    resources/resource.qrc
+RESOURCES += \
+    resources/resource.qrc
 
-#DISTFILES += \
-#    appveyor.yml \
-#    icon.rc \
-#    app.ico \
-#    README.md
+DISTFILES += \
+    appveyor.yml \
+    icon.rc \
+    app.ico \
+    README.md
 
-#win32 {
-#    RC_FILE += icon.rc
-#}
+win32 {
+    RC_FILE += icon.rc
+}
 
 
 #requires(qtConfig(tableview))
