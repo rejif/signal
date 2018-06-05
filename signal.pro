@@ -1,37 +1,27 @@
-
-#Ref1
 QT = core widgets network networkauth
+win32:QT += winextras
 requires(qtConfig(tableview))
 CONFIG -= app_bundle
+
+TARGET = signal
+TEMPLATE = app
+
+DEFINES += QT_DEPRECATED_WARNINGS
+
+#//include(src/src.pri)
 
 HEADERS += \
     twitter.h \
     ui_twitterdialog.h \
-    twittertimelinemodel.h
+    twittertimelinemodel.h \
+    widget.h
 
 SOURCES += \
-    main.cpp \
-    twitter.cpp \
-    twittertimelinemodel.cpp
-
-#FORMS += \
-#    twitterdialog.ui
+    main.cpp
 
 #Ref2
 #HEADERS += src/Twitter.h
 #SOURCES += src/twitter.cpp
-
-
-#QT       += core widgets network networkauth
-
-win32:QT += winextras
-
-#TARGET = signal
-#TEMPLATE = app
-
-#DEFINES += QT_DEPRECATED_WARNINGS
-
-#//include(src/src.pri)
 
 RESOURCES += \
     resources/resource.qrc
@@ -45,19 +35,3 @@ DISTFILES += \
 win32 {
     RC_FILE += icon.rc
 }
-
-
-#requires(qtConfig(tableview))
-#CONFIG -= app_bundle
-
-#HEADERS += \
-#    twitter.h \
-#    twittertimelinemodel.h
-
-#SOURCES += \
-#    main.cpp \
-#    twitter.cpp \
-#    twittertimelinemodel.cpp
-
-#FORMS += \
-#    twitterdialog.ui
