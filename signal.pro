@@ -8,16 +8,14 @@ TEMPLATE = app
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
-#//include(src/src.pri)
+include(src/src.pri)
 
 HEADERS += \
     twitter.h \
     ui_twitterdialog.h \
-    twittertimelinemodel.h \
-    widget.h
+    twittertimelinemodel.h
 
-SOURCES += \
-    main.cpp
+SOURCES +=
 
 #Ref2
 #HEADERS += src/Twitter.h
