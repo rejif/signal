@@ -1,10 +1,3 @@
-/********************************************************************************
-** Form generated from reading UI file 'twitterdialog.ui'
-**
-** Created by: Qt User Interface Compiler version 5.10.0
-**
-** WARNING! All changes made in this file will be lost when recompiling UI file!
-********************************************************************************/
 
 #ifndef UI_TWITTERDIALOG_H
 #define UI_TWITTERDIALOG_H
@@ -23,8 +16,7 @@
 
 QT_BEGIN_NAMESPACE
 
-class Ui_TwitterDialog
-{
+class Ui_TwitterDialog{
 public:
     QFormLayout *formLayout;
     QLabel *clientIdLabel;
@@ -34,8 +26,7 @@ public:
     QPushButton *pushButton;
     QTableView *view;
 
-    void setupUi(QDialog *TwitterDialog)
-    {
+    void setupUi(QDialog *TwitterDialog){
         if (TwitterDialog->objectName().isEmpty())
             TwitterDialog->setObjectName(QStringLiteral("TwitterDialog"));
         TwitterDialog->resize(800, 600);
@@ -79,6 +70,9 @@ public:
 
         formLayout->setWidget(3, QFormLayout::SpanningRole, view);
 
+        QPushButton* tweetButton = new QPushButton("TweetButtn");
+        formLayout->setWidget(4, QFormLayout::SpanningRole, tweetButton);
+
 #ifndef QT_NO_SHORTCUT
         clientIdLabel->setBuddy(clientIdLineEdit);
         clientSecretLabel->setBuddy(clientSecretLineEdit);
@@ -89,14 +83,12 @@ public:
         QMetaObject::connectSlotsByName(TwitterDialog);
     } // setupUi
 
-    void retranslateUi(QDialog *TwitterDialog)
-    {
+    void retranslateUi(QDialog *TwitterDialog){
         TwitterDialog->setWindowTitle(QApplication::translate("TwitterDialog", "Twitter Timeline", nullptr));
         clientIdLabel->setText(QApplication::translate("TwitterDialog", "C&lient Id:", nullptr));
         clientSecretLabel->setText(QApplication::translate("TwitterDialog", "Client &secret:", nullptr));
         pushButton->setText(QApplication::translate("TwitterDialog", "&Connect", nullptr));
     } // retranslateUi
-
 };
 
 namespace Ui {

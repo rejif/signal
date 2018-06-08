@@ -28,6 +28,7 @@ DISTFILES += \
     appveyor.yml \
     icon.rc \
     app.ico \
+    .gitignore \
     README.md
 
 win32 {

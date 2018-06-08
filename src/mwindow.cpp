@@ -16,6 +16,8 @@ MWindow::MWindow(QWidget *parent):QMainWindow(parent){
 //        resize(this->maximumWidth(),this->maximumHeight());
 
     config->load();
+    config->save();
+
     Glass *cw = new Glass();
     setCentralWidget(cw);
     QVBoxLayout *vl = Slib::createVBoxLayout();
@@ -48,7 +50,7 @@ MWindow::MWindow(QWidget *parent):QMainWindow(parent){
     hlconfig->addWidget(Slib::createLabel("Config","QLabel{padding:1px 5px;color:white;background-color:rgba(34,34,34,0.8);}"));
     hlconfig->addWidget(Slib::createLambdaActionButton("ReLoad",[=](){
         config->load();
-        QMessageBox::information(this,"Information","token:"+config->token);
+        QMessageBox::information(this,"Information","ID:"+config->clientID+"/Secret:"+config->clientSecret);
     }));
     hlconfig->addWidget(Slib::createLambdaActionButton("ConfigEdit",[=](){if(config->check()){QProcess::execute("C:/Windows/System32/cmd.exe /C start "+config->path);}}));
     hlconfig->addWidget(Slib::createLambdaActionButton("ConfigSave",[=](){config->save();}));

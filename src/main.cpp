@@ -18,6 +18,7 @@
 #include <QCommandLineParser>
 #include <QCommandLineOption>
 
+#include "config.h"
 
 using namespace std;
 int main(int argc, char *argv[]){
@@ -29,7 +30,6 @@ int main(int argc, char *argv[]){
     app.setOrganizationName("RedObj");
 
     Q_INIT_RESOURCE(resource);
-
 
     //forTwitter
     QCommandLineParser parser;

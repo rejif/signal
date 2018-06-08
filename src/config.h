@@ -9,8 +9,8 @@
 class Config{
 public:
     QString path = qApp->applicationDirPath()+"/conf.ini";
-    bool develop_hidden,explorer;
-    QString token;
+    bool develop_hidden;
+    QString clientID,clientSecret;
     QDateTime loaded;
     Config(){}
     ~Config();
@@ -24,8 +24,8 @@ public:
         settings.setValue("hidden", develop_hidden);
         settings.endGroup();
         settings.beginGroup("Shortcut");
-        settings.setValue("Explorer",explorer);
-        settings.setValue("Token",token);
+        settings.setValue("ClientID",clientID);
+        settings.setValue("ClientSecret",clientSecret);
         settings.endGroup();
         list();
     }
@@ -35,8 +35,8 @@ public:
         develop_hidden = settings.value("hidden").toBool();
         settings.endGroup();
         settings.beginGroup("Shortcut");
-        explorer = settings.value("Explorer").toBool();
-        token = settings.value("Token").toString();
+        clientID = settings.value("ClientID").toString();
+        clientSecret = settings.value("ClientSecret").toString();
         settings.endGroup();
         loaded = QDateTime::currentDateTime();
         list();

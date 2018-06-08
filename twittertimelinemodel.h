@@ -84,7 +84,9 @@ public slots:
         QNetworkReply *reply = twitter.get(url, parameters);
         connect(reply, &QNetworkReply::finished, this, &TwitterTimelineModel::parseJson);
     }
+    void postTweet(){
 
+    }
 signals:
     void authenticated();
 private:
